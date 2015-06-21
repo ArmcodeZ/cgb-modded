@@ -1644,7 +1644,7 @@ $tabTroops = GUICtrlCreateTabItem("Troops")
 			GUICtrlSetBkColor(-1, $COLOR_WHITE)
 			_GUICtrlSlider_SetTipSide(-1, $TBTS_BOTTOM)
 			_GUICtrlSlider_SetTicFreq(-100, 100)
-			GUICtrlSetLimit(-1,500, 20) ; change max/min value
+			GUICtrlSetLimit(-1,500, 0) ; change max/min value
 			GUICtrlSetData(-1, 20) ; default value
 			GUICtrlSetOnEvent(-1, "sldTrainITDelay")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

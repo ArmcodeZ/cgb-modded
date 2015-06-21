@@ -244,27 +244,30 @@ Func Train()
 			endif
 		    If _Sleep(500) Then ExitLoop
 			$brrNum += 1
+			;Click with pixel change watches for barracks queue to fill then stops clicking
+			;Barbarian checks for change on archer, all others check for change on barbarian
+			;This will fail on a level 1 barracks for training barbarians
 			Switch $barrackTroop[$brrNum-1]
 				Case 0
-					Click(220, 320, 75, 10) ;Barbarian
+					ClickUntilPixelChanges(220, 320, 75, $isldTrainITDelay, 331, 320) ;Barbarian
 				Case 1
-					Click(331, 320, 75, 10) ;Archer
+					ClickUntilPixelChanges(331, 320, 75, $isldTrainITDelay, 220, 320) ;Archer
 				Case 2
-					Click(432, 320, 15, 10) ;Giant
+					ClickUntilPixelChanges(432, 320, 15, $isldTrainITDelay, 220, 320) ;Giant
 				Case 3
-					Click(546, 320, 75, 10) ;Goblin
+					ClickUntilPixelChanges(546, 320, 75, $isldTrainITDelay, 220, 320) ;Goblin
 				Case 4
-					Click(647, 320, 37, 10) ;Wall Breaker
+					ClickUntilPixelChanges(647, 320, 37, $isldTrainITDelay, 220, 320) ;Wall Breaker
 				Case 5
-					Click(220, 425, 15, 10) ;Balloon
+					ClickUntilPixelChanges(220, 425, 15, $isldTrainITDelay, 220, 320) ;Balloon
 				Case 6
-					Click(331, 425, 18, 10) ;Wizard
+					ClickUntilPixelChanges(331, 425, 18, $isldTrainITDelay, 220, 320) ;Wizard
 				Case 7
-					Click(432, 425, 5, 10) ;Healer
+					ClickUntilPixelChanges(432, 425, 5, $isldTrainITDelay, 220, 320) ;Healer
 				Case 8
-					Click(546, 425, 3, 10) ;Dragon
+					ClickUntilPixelChanges(546, 425, 3, $isldTrainITDelay, 220, 320) ;Dragon
 				Case 9
-					Click(647, 425, 3, 10) ;PEKKA
+					ClickUntilPixelChanges(647, 425, 3, $isldTrainITDelay, 220, 320) ;PEKKA
 			EndSwitch
 
 		    If _Sleep(500) Then ExitLoop

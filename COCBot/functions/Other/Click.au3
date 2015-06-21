@@ -41,3 +41,20 @@ EndFunc   ;==>PureClick
 Func ClickP($point, $howMuch = 1, $speed = 0)
 	Click($point[0], $point[1], $howMuch, $speed)
 EndFunc   ;==>ClickP
+
+;Takes a point, reads color at that point and clicks either $times times or until change detected at point
+;Mouse over test point could result in color change detected
+Func ClickUntilPixelChanges($x, $y, $times, $speed, $xpt, $ypt)
+	Local $basecolor = _GetPixelColor($xpt, $ypt, True)
+	if $times <> 1 Then
+		for $i = 0 to ($times - 1)
+			;Click once. We do not check for isProblemAffect due to color change check
+			ControlClick($Title, "", "", "left", "1", $x, $y)
+			If _Sleep($speed, False) Then ExitLoop
+			; If color has changed, exit loop
+			if Not _ColorCheck(_GetPixelColor($xpt, $ypt, True), $basecolor, 20) then ExitLoop
+		Next
+	Else
+		Click($x,$y,1,$speed)
+	Endif
+EndFunc   ;==>ClickUntilPixelChanges
