@@ -82,7 +82,20 @@ Func DonateCC($Check = False)
 				;;; Custom Combination Donate by ChiefM3
 				If $iChkDonateCustom = 1 Then
 					If CheckDonateTroop($eLava + 1, $aDonCustom, $aBlkCustom, $aBlackList, $ClanString) Then
-					    DonateCustomTroops()
+						For $i = 0 To 2
+						   If $varDonateCustom[$i][0] < $eBarb Then
+							  $varDonateCustom[$i][0] = $eArch ; Change strange small numbers to archer
+						   ElseIf $varDonateCustom[$i][0] > $eLava Then
+							  ContinueLoop ; If "Nothing" is selected then continue
+						   EndIf
+						   If $varDonateCustom[$i][1] < 1 Then
+							  ContinueLoop ; If donate number is smaller than 1 then continue
+						   ElseIf $varDonateCustom[$i][1] > 8 Then
+							  $varDonateCustom[$i][1] = 8 ; Number larger than 8 is unnecessary
+						   EndIf
+						   DonateTroopType2($varDonateCustom[$i][0], $varDonateCustom[$i][1]) ;;; Donate Custom Troop using DonateTroopType2
+						Next
+						Click(1, 1)
 					EndIf
 					If $Donate Then
 						$y = $DonatePixel[1] + 10
@@ -239,8 +252,6 @@ Func DonateCC($Check = False)
 
 			If $DonateAllTroop Then
 				Select
-				    Case $iChkDonateAllCustom = 1
-						DonateCustomTroops()
 					Case $iChkDonateAllLavaHounds = 1
 						DonateTroopType($eLava)
 					Case $iChkDonateAllGolems = 1
@@ -415,7 +426,7 @@ Func DonateTroopType($Type)
 	If _Sleep(250) Then Return
 EndFunc   ;==>DonateTroopType
 
-;;; A partial derivative from DonateTroopType() for Custom Combination Donate by ChiefM3
+;;; Custom Combination Donate by ChiefM3
 Func DonateTroopType2($Type, $quant)
 
 	Local $Slot, $YComp
@@ -432,6 +443,8 @@ Func DonateTroopType2($Type, $quant)
 			$YComp = 99 + 98
 	EndSwitch
 
+	Click($DonatePixel[0], $DonatePixel[1] + 11)
+	If _Sleep(250) Then Return
 	_CaptureRegion(0, 0, 766, $DonatePixel[1] + 50 + $YComp)
 	$icount = 0
 	While Not (_ColorCheck(_GetPixelColor(237 + ($Slot * 82), $DonatePixel[1] - 5 + $YComp), Hex(0x507C00, 6), 10) Or _
@@ -474,28 +487,7 @@ Func DonateTroopType2($Type, $quant)
 		SetLog("No " & NameOfTroop($Type) & " available to donate..", $COLOR_RED)
 	EndIf
 
+	Click(1, 1)
+;~	PureClick(1, 1)
+	If _Sleep(250) Then Return
 EndFunc   ;==>DonateTroopType2 for custom troops
-
-Func DonateCustomTroops()
-   ; click green button
-   Click($DonatePixel[0], $DonatePixel[1] + 11)
-   _Sleep(250)
-
-   ; iterate through 3 custom troop types
-   For $i = 0 To 2
-	  If $varDonateCustom[$i][0] < $eBarb Then
-		 $varDonateCustom[$i][0] = $eArch ; Change strange small numbers to archer
-	  ElseIf $varDonateCustom[$i][0] > $eLava Then
-		 ContinueLoop ; If "Nothing" is selected then continue
-	  EndIf
-	  If $varDonateCustom[$i][1] < 1 Then
-		 ContinueLoop ; If donate number is smaller than 1 then continue
-	  ElseIf $varDonateCustom[$i][1] > 8 Then
-		 $varDonateCustom[$i][1] = 8 ; Number larger than 8 is unnecessary
-	  EndIf
-	  DonateTroopType2($varDonateCustom[$i][0], $varDonateCustom[$i][1]) ;;; Donate Custom Troop using DonateTroopType2()
-   Next
-
-   ; Click away
-   Click(1, 1)
-EndFunc    ;==>DonateCustomTroops() for donating 3 types of custom troops

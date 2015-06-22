@@ -586,9 +586,6 @@ GUICtrlCreateTabItem("")
 	    $chkZapAndRun = GUICtrlCreateCheckbox("Allow Zap && Run", $x, $y, -1, -1)
 		GUICtrlSetTip(-1, "Allow Zap and Run behavior. If a live base has enough Dark Elixir, we will zap the storage and return.")
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	    $chkZapAndRunPrepareSpells = GUICtrlCreateCheckbox("Create Lightning immediately after Zap && Run", $x + 140, $y, -1, -1)
-		GUICtrlSetTip(-1, "Check this option to train lightning spells immediately after Zap & Run. Leave unchecked to attack after zapping without preparing new spells.")
-		GUICtrlSetState(-1, $GUI_DISABLE)
 
 #cs		$y +=27
 		$chkWithKing = GUICtrlCreateCheckbox("Attack their King", $x, $y, -1, -1)
@@ -633,7 +630,7 @@ GUICtrlCreateTabItem("")
 		$y+=22
 		$lblAttackTHType = GUICtrlCreateLabel("Attack Type:", $x + 10 , $y + 5, -1, 17, $SS_RIGHT)
 		$cmbAttackTHType = GUICtrlCreateCombo("",  $x + 95, $y, 105, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetData(-1, "Barch|Attack1:Normal|Attack2:eXtreme|Attack3:Gbarch|Attack4:SmartBarch|Attack5:LimitedBarch|Attack6:Giarch", "Attack1:Normal")
+			GUICtrlSetData(-1, "Barch|Attack1:Normal|Attack2:eXtreme|Attack3:Gbarch|Attack4:SmartBarch|Attack5:LimitedBarch", "Attack1:Normal")
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$y+=22
 		$chkTHSnipeLightningDE = GUICtrlCreateCheckbox("Use lightning for DE while TH Sniping", $x, $y, -1, -1)
@@ -1489,7 +1486,7 @@ $tabTroops = GUICtrlCreateTabItem("Troops")
 		$txtTip = "Use this to boost your Barracks with GEMS! Use with caution!"
 		GUICtrlSetTip(-1, $txtTip)
 	$cmbBoostBarracks = GUICtrlCreateCombo("", $x + 150, $y, 35, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		GUICtrlSetData(-1, "0|1|2|3|4|5", "0")
+		GUICtrlSetData(-1, "0|1|2|3|4|5|9999999999999", "0")
 		GUICtrlSetTip(-1, $txtTip)
 	$y += 25
 	GUICtrlCreateIcon ($LibDir & "\CGBBOT.dll", 64, $x, $y + 2, 16, 16)

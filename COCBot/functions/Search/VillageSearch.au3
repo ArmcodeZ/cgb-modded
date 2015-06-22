@@ -181,7 +181,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				EndIf
 				If $DESideEnable = 1 Then
 					If checkDESideResources() = True Then
-						SetLog("DE Side Base Found Found Attacking NOW", $COLOR_BLUE)
+						SetLog("DE Side Base Found Attacking NOW", $COLOR_BLUE)
 						$FoundDarkSideAtk = 1
 						ExitLoop
 					EndIf
@@ -210,7 +210,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				ExitLoop
 			Else
 				; break every 10 searches when Snipe While Train MOD is activated
-				If $isSnipeWhileTrain And $iSkipped > 18 Then
+				If $isSnipeWhileTrain And $iSkipped > 8 Then
 					Click(62, 519) ; Click End Battle to return home
 					$haltSearch = True ; To Prevent Initiation of Attack
 					ExitLoop
@@ -226,7 +226,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		Else
 			If $DESideEnable = 1 Then
 				If checkDESideResources()= True Then
-					SetLog("DE Side Base Found Found Attacking NOW", $COLOR_BLUE)
+					SetLog("DE Side Base Found Attacking NOW", $COLOR_BLUE)
 					$FoundDarkSideAtk = 1
 					ExitLoop
 				EndIf

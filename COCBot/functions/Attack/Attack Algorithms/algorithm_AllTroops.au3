@@ -215,3 +215,4 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	If $FoundDarkSideAtk = 1 Then DERedDropRevert()
 	SetLog("Finished Attacking, waiting for the battle to end")
 EndFunc   ;==>algorithm_AllTroops
+

@@ -153,9 +153,7 @@ Global $YourTH
 Global $AttackTHType
 Global $chklightspell
 Global $chkZapAndRun
-Global $chkZapAndRunPrepareSpells
 Global $OptZapAndRun
-Global $OptZapAndRunPrepareSpells
 Global $zapandrunAvoidAttack = 0
 Global $SpellMinDarkStorage = 500
 Global $iLSpellQ
